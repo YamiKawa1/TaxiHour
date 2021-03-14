@@ -38,6 +38,7 @@ const server = app.listen(port, () => {
 const io = SocketIO(server);
 
 io.on('connection', (socket) => {
+    console.log('new connection', socket.id);
 
     socket.on('reserve', data => {
         io.socket.emit('reserve', data)

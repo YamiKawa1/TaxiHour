@@ -29,7 +29,7 @@ app.set('view engine', '.hbs');
 
 //server
 var host = process.env.SERVE_HOST || 'localhost';
-var port = process.env.SERVE_PORT || 3000;
+var port = process.env.PORT || 3000;
 
 const server = app.listen(port, () => {
     console.log(host + ':' + port);
@@ -44,7 +44,3 @@ io.on('connection', (socket) => {
         io.socket.emit('reserve', data)
     })
 });
-
-
-
-

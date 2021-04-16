@@ -35,12 +35,17 @@ const server = app.listen(port, () => {
     console.log(host + ':' + port);
 })
 
+
+const connection = [];
+
 const io = SocketIO(server);
 
 io.on('connection', (socket) => {
+    var taken = [];
+    connection.push(socket.id)
     console.log('new connection', socket.id);
 
-    socket.on('reserve', data => {
-        io.socket.emit('reserve', data)
+    socket.on('click', data => {
+        io.sockets.emit('click', data)
     })
 });

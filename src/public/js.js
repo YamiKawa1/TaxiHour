@@ -1,39 +1,125 @@
 const socket = io();
-const slectedBtn = {}
 
-const reservar = (element) => {
-    var selected = {};
-    var a = document.getElementById(element.id).innerHTML;
-     
-    
-    if (a == 0 ) {
-        document.getElementById(element.id).innerHTML = a  
-        document.getElementById(element.id).className = "btn bg-danger"  
-    } else{
-        a -= 1;
-    document.getElementById(element.id).innerHTML = a
-    selected.push([element.id = 0])
-    }
-    
-    console.log(socket.id)
-    
+const element = document.getElementsByClassName('btn');
+
+const ref = [
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },    
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },   
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },    
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },   
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    },
+    {
+    clicked: false,
+    }   
+]
+
+console.log(ref[0].clicked);
+for(let i = 0; i < element.length; i++){
+        element[i].addEventListener("click", ()=>{
+            socket.emit('click', i);
+
+            socket.on('click', i => {
+
+                if (ref[i].clicked == false) {
+                element[i].innerHTML = parseInt(element[i].innerHTML) - 1
+                
+                ref[i].clicked = true
+                }else{
+                element[i].innerHTML = parseInt(element[i].innerHTML) + 1
+                
+                ref[i].clicked = false
+            }
+            console.log(element[i]); 
+
+            });
+
+    });
 }
+
+
+
+
+
+// element.addEvent
+
 // const reservar = (element) => {
-//     var a = 0;
-//     var c = 0;
-//     var a = document.querySelectorAll("button.btn");
-//     a.forEach(x => {
-//         console.log(x.innerHTML)
+//     socket.emit('reserve', element.id);
+
+//     socket.on('reserve', option => {
+//         var a = document.getElementById(element.id).innerHTML;
+//         a = parseInt(a)
+//         if (option){
+//             document.getElementById(element.id).innerHTML = a + 1;
+//             console.log('ya seleccionado');
+//         } else {
+//             document.getElementById(element.id).innerHTML = a - 1;
+//             console.log('no seleccionado todavia');
+//         }
 //     })
-//     var c = parseInt(a);
-     
-//     console.log(a, c)
-//     if (a === 0) {
-//         document.querySelectorAll("button.btn").innerHTML = a    
-//     }
+ 
     
-//     var c = parseInt(a);
-//     c -=1;
-//     document.querySelectorAll("button.btn").innerHTML = c
     
-// }
